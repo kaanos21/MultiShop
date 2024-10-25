@@ -9,6 +9,8 @@ namespace MultiShop.Comment.Context
         {
             optionsBuilder.UseSqlServer("server=localhost,1442;initial Catalog=MultiShopCommentDb;User Id=sa;Password=123456aA*");
         }
+
+
         public DbSet<UserComment> UserComments { get; set; }
     }
 }
