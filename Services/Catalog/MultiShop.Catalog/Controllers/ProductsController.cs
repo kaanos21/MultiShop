@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MultiShop.Catalog.Dtos.ProductDtos;
 using MultiShop.Catalog.Services.ProductServices;
 
 namespace MultiShop.Catalog.Controllers
 {
+    [AllowAnonymous]
     [Route("api/[controller]")]
     [ApiController]
     public class ProductsController : ControllerBase
@@ -44,6 +46,18 @@ namespace MultiShop.Catalog.Controllers
         {
             await _ProductService.UpdateProductAsync(updateProduct);
             return Ok("Başarı ile Güncellendi");
+        }
+        [HttpGet("ProductListWithCategory")]
+        public async Task<IActionResult> ProductListWithCategory()
+        {
+            var values = await _ProductService.GetProductsWithCategoryAsync();
+            return Ok(values);
+        }
+        [HttpGet("ProductListWithCategoryByCategoryId")]
+        public async Task<IActionResult> ProductListWithCategoryByCategoryId(string id)
+        {
+            var values = await _ProductService.GetProductsWithCategoryByCategoryIdAsync(id);
+            return Ok(values);
         }
     }
 }

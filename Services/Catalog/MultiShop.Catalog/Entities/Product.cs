@@ -15,5 +15,6 @@ namespace MultiShop.Catalog.Entities
         public string CategoryId { get; set; }
         [BsonIgnore]
         public Category Category { get; set; } 
+        public string CategoryName { get; set; }
     }
 }
